@@ -1,7 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Field, reduxForm } from "redux-form";
+import { createStream } from "../../actions";
 
 const StreamCreate = (props) => {
+  const dispatch = useDispatch();
   const renderInput = ({ input, label, meta }) => {
     // console.log(meta);
     return (
@@ -21,7 +24,7 @@ const StreamCreate = (props) => {
       </section>
     );
   };
-  const onSubmit = (formValues) => console.log(formValues);
+  const onSubmit = (formValues) => dispatch(createStream(formValues));
   return (
     <form onSubmit={props.handleSubmit(onSubmit)} className="ui form error">
       <Field name="title" component={renderInput} label="Enter Title" />
