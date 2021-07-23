@@ -1,52 +1,17 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Field, reduxForm } from "redux-form";
 import { createStream } from "../../actions";
+import StreamForm from "./StreamForm";
 
-const StreamCreate = (props) => {
+const StreamCreate = () => {
   const dispatch = useDispatch();
-  const renderInput = ({ input, label, meta }) => {
-    // console.log(meta);
-    return (
-      <section
-        className={`field ${
-          !meta.active && meta.error && meta.touched ? "error" : ""
-        }`}
-      >
-        <label>{label}</label>
-        <input type="text" {...input} />
-        {(() =>
-          !meta.active && meta.error && meta.touched ? (
-            <section className="ui error message">
-              <section className="header">{meta.error}</section>
-            </section>
-          ) : null)()}
-      </section>
-    );
-  };
   const onSubmit = (formValues) => dispatch(createStream(formValues));
   return (
-    <form onSubmit={props.handleSubmit(onSubmit)} className="ui form error">
-      <Field name="title" component={renderInput} label="Enter Title" />
-      <Field
-        name="description"
-        component={renderInput}
-        label="Enter Description"
-      />
-      <button className="ui primary button">Submit</button>
-    </form>
+    <section>
+      <h3>Create stream</h3>
+      <StreamForm onSubmit={onSubmit} />
+    </section>
   );
 };
 
-const validate = ({ title, description }) => {
-  const errors = {
-    title: !title && "Enter Title",
-    description: !description && "Enter Description",
-  };
-  return errors;
-};
-
-export default reduxForm({
-  form: "streamCreate",
-  validate,
-})(StreamCreate);
+export default StreamCreate;
