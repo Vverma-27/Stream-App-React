@@ -11,7 +11,7 @@ const StreamForm = (props) => {
         }`}
       >
         <label>{label}</label>
-        <input type="text" {...input} />
+        <input type="text" {...input} autoComplete="off" />
         {(() =>
           !meta.active && meta.error && meta.touched ? (
             <section className="ui error message">

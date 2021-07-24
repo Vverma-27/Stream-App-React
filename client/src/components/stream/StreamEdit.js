@@ -10,6 +10,7 @@ const StreamEdit = ({ match }) => {
     dispatch(fetchStream(id));
   }, []);
   const stream = useSelector((state) => state.streams[id]);
+  if (!stream) return <div>loading....</div>;
   const onSubmit = (formValues) => dispatch(editStream(formValues, id));
   const { title, description } = stream;
   const renderHelper = () => {

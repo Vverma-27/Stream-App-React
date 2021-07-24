@@ -13,7 +13,9 @@ const StreamList = () => {
   const renderedAdminButtons = (userId, streamId) => {
     return stateUserId === userId ? (
       <section className="right floated content">
-        <button class="negative ui button">Delete</button>
+        <Link to={`/stream/delete/${streamId}`} class="negative ui button">
+          Delete
+        </Link>
         <Link to={`/stream/edit/${streamId}`} class="ui blue basic button">
           Edit
         </Link>
